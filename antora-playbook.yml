@@ -1,6 +1,6 @@
 site:
-  title: FIXME Course Title
-  start_page: REPLACEREPONAME::index.adoc
+  title: "Red Hat Enterprise Linux: Create System Images Using Image Builder"
+  start_page: imagebuilder::index.adoc
 
 content:
   sources:

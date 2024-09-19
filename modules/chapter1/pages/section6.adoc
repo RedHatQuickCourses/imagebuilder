@@ -1,0 +1,18 @@
+= Working with RHEL for Edge
+
+*Image builder allows us to build RHEL for Edge images*
+
+RHEL for Edge images are rpm-ostree file system images that consist of a base OS package, a Podman container engine, and additional RPM content. RHEL for Edge images are targeted at solving those common challenges for edge deployments.
+
+You can deploy a RHEL for Edge image on Bare Metal, Appliance, and Edge servers. You can compose customized RHEL for Edge images using the image builder tool.
+
+With a RHEL for Edge image, you can achieve the following:
+
+- Automatic updates
+- Custom health checks and intelligent rollback
+- Container focused workflow
+- Optimized OTA payload
+
+For more information on building RHEL for Edge images, refer the documentation at https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/composing_installing_and_managing_rhel_for_edge_images/index[Composing, installing, and managing RHEL for Edge images]
+
+Use these resources for ongoing reference when supporting edge use cases.

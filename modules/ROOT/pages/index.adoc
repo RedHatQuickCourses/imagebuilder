@@ -1,27 +1,20 @@
-= An Example Quick Course
+= Red Hat Enterprise Linux: Create System Images Using Image Builder
 :navtitle: Home
 
 == Introduction
 
-Course Title: Course title FIXME
+Course Title: Red Hat Enterprise Linux: Create System Images Using Image Builder
 
 Description:
-Course description FIXME
 
-Duration: FIXME hours
+This course introduces image builder, a Red Hat Enterprise Linux feature for creating images. Familarize with how it works, how to use it, and how to troubleshoot issues.
+
+Duration: 30 minutes
 
 == Objectives
 
-On completing this course, you should be able to:
-
-* Observable, measurable objective...
-* Observable, measurable objective...
-* Observable, measurable objective...
+- Use the RHEL web console and the image builder command line interface (CLI) to create system images.
 
 == Prerequisites
 
-This course assumes that you have the following prior experience:
-
-* Course or experience...
-* Course or experience...
-* Course or experience...
+- This course assumes that you are a Red Hat Certified System Administrator (RHCSA) or that you have equivalent experience with RHEL.

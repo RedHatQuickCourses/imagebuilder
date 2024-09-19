@@ -1,0 +1,10 @@
+===  Blueprints and images 
+
+== Objectives
+
+- Describe the process of creating a blueprint and image.
+- Describe the steps to customize the blueprint and create new images.
+- Describe the common use cases for blueprint customization.
+- Define RHEL for Edge and describe how you can work with it in image builder.
+- Identify ways to troubleshoot issues with image builder.
+

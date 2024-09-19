@@ -1,6 +1,20 @@
-= Section 2
+== Image builder output image formats
 
-* Create multiple copies of this section as needed.
-* Remove any unnecessary sections or chapter pages.
-* Customize the section as appropriate.
-* Ensure that each page contains a manageable amount of content.
+Image builder allows you to build custom images in various formats.
+
+Each image is:
+- Paritioned and pre-installed with the correct packages.
+- Pre-configured with the correct services and custom configuration for the target environment.
+
+Some output formats supported are:
+
+- RHEL for Edge Raw (.tar)
+- RHEL for Edge installer (.iso)
+- VMDK (VMware® vSphere® Hypervisor)
+- AMI (Amazon Web Services®)
+- VHD (Microsoft® Azure® and Google Cloud Platform®)
+- qcow2 for KVM, Red Hat Virtualization, Red Hat Satellite
+- qcow2 for OpenStack
+
+
+For the full list of output formats, see documentation at https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#composer-output-formats_composer-description[RHEL image builder output formats^]

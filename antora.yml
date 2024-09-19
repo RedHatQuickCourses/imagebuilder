@@ -1,5 +1,5 @@
-name: REPLACEREPONAME
-title: FIXME Course Title
+name: imagebuilder
+title: "Red Hat Enterprise Linux: Create System Images Using Image Builder"
 version: 1
 nav:
 - modules/ROOT/nav.adoc

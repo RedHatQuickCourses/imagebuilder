@@ -1,3 +1,13 @@
 = Appendix
 
-FIXME: Content for Appendix...
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#introduction-to-composer_composer-description[What is image builder ?]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#enabling-or-disabling-services_creating-system-images-with-composer-command-line-interface[Supported image customizations]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#composer-output-formats_composer-description[List of image builder output formats]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#creating-a-composer-blueprint-in-the-web-console-interface_creating-system-images-with-composer-web-console-interface[Creating an image builder blueprint in the web console interface]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#creating-system-images-with-composer-command-line-interface_composing-a-customized-rhel-system-image[Creating system images using the image builder command-line interface]
+
+https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/composing_installing_and_managing_rhel_for_edge_images/index[Building RHEL for Edge images on RHEL 9] 

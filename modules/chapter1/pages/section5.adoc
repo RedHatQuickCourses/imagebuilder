@@ -1,0 +1,94 @@
+== Creating blueprints and images
+
+= Create and customize blueprints via the web console
+
+When an application needs to be added to an infrastructure, you can use image builder to design a single system to deploy that application, and to generate corresponding images.
+
+The feature that holds that customized plan for the system is called a `blueprint`.
+
+A blueprint is a list of preselected components for a system that forms the template for a custom image. Some components are packages or software groups.
+
+You can create multiple images in multiple supported formats from the same blueprint. A blueprint saves a record of the inputs and instructions for an image build so it can be reproduced later.
+
+The screenshot on this page shows what the list of blueprints looks like in the web console interface. The *Image Builder* navigation sidebar option presents an overview.
+
+image::ch5.1.png[float=center]
+
+Click *Create Blueprint* in the image builder interface to open the page shown in the screenshot here.
+
+image::ch5.2.png[float=center]
+
+On this page, you can select components to customize the system. A component can be RPM packages or kernel customizations.
+
+image::ch5.3.png[float=center]
+
+
+After making your selections, you save the new blueprint. From here, you can edit the blueprint as needed without starting over, including adding and removing components.
+
+*Create images*
+
+After creating a blueprint, you can create images based on that blueprint. The previous section, which show screenshots of viewing and editing a blueprint, show the button for building an image from the selected blueprint.
+
+image::ch5.4.png[float=center]
+
+Image builder allows building any of the supported image types mentioned earlier from a blueprint. The screenshot here shows selecting the output file format for the image you want to build.
+
+image::ch5.5.png[float=center]
+
+= Blueprint customization by using the CLI
+
+To customize a blueprint from the CLI:
+
+. To add a user to the weldr or root groups, run the following commands:
+   
+   # sudo usermod -a -G weldr <user>
+   # newgrp weldr
+
+. Download a copy of the blueprint configuration file from image builder:
+
+   # composer-cli blueprints save <blueprint-name>
+
+. Edit that file using any file editor of your choice. The file name ends with toml extenstion (example: blueprint-name.toml).
+ 
+. Push the revised blueprint configuration file back to image builder:
+
+   # composer-cli blueprints push <blueprint-name.toml>
+
+. Verify that your changes appear in the configuration file using this command:
+
+   # composer-cli blueprints show <blueprint-name>
+
+Blueprint configuration files follow TOML (Tom's Obvious, Minimal Language) format, which uses key/value pairs. For more information, see TOML on GitHub at https://github.com/toml-lang/toml[Github Toml]
+
+*Adding SSH keys for a user*
+
+Append lines to the blueprint configuration file to add SSH keys for a user.
+
+SSH keys for the root user:
+  [
+ [customizations.sshkey]]
+ user = "root"
+ key = "<public SSH key>"
+
+If you copy the contents of your personal public key file (.ssh/id_rsa.pub) to the value of key, you should be able to use SSH to log in as root on systems launched from the resulting image.
+
+*Adding users*
+
+Append lines to the blueprint configuration file to add a new user.
+
+New user `myuser`:
+
+ [[customizations.user]]
+ name = "myuser"
+ description = <user description>
+ password = "<password in plain text OR an encrypted password string>"
+ key = "<public SSH key>"
+ home = "/home/my-user/"
+ shell = "/usr/bin/bash"
+ groups = ["users", "wheel"]
+ uid = 1001
+ gid = 1001
+
+To generate encrypted password string:
+ 
+ # python3 -c "import crypt, getpass; print(crypt.crypt(getpass.getpass(), crypt.METHOD_SHA512))"

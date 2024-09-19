@@ -1,7 +1,13 @@
-= Chapter 1
+== Using and Supporting Image Builder in Red Hat Enterprise Linux
 
-In this section, we cover... FIXME
+In this section, we cover how to Use the image builder web console and command line interface (CLI) to create system images.
 
+= Objectives 
 
-- Add or remove section entries in the `antora.yaml` file as needed.
-- Ensure you create or delete the corresponding directory for the chapter accordingly.
+- Define image builder in Red Hat Enterprise Linux and list some of its features.
+- Install and configure image builder and its web console plugin.
+- Use image builder in the web console to modify the packages selected for building images.
+- Customize a blueprint for post-installation tasks like adding users and SSH keys.
+- Describe the edge computing use cases for image builder.
+- Identify and investigate common issues with image builder.
+- Define RHEL for Edge and describe how you can work with it in image builder.
