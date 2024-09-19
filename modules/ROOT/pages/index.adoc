@@ -3,7 +3,7 @@
 
 == Introduction
 
-Course Title: Red Hat Enterprise Linux: Create System Images Using Image Builder
+Red Hat Enterprise Linux: Create System Images Using Image Builder
 
 Description:
 
