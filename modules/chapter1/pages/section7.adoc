@@ -1,0 +1,48 @@
+= Ways to troubleshoot image builder issues
+
+This section describes some common issues with image builder and how to investigate them.
+
+*Investigating issues using composer-cli*
+
+You can run composer-cli commands to investigate image builder issues:
+
+- Get a list of blueprints:
+   
+    # composer-cli blueprints list
+
+- View compose logs:
+
+   # composer-cli compose logs
+
+- Confirm whether image builder is getting the Dandified YUM (DNF) sources correctly and not using a third-party image:
+
+   # composer-cli sources list
+
+- Look for command output in Sosreport data: sos_commands/composer/ 
+
+*Investigating issues with osbuild-composer*
+
+The `osbuild-composer` service uses systemd to manage its directories (see the systemd standard).
+
+Logs go directly to the system journal.
+
+- Get the service logs relevant to investigating issues:
+
+   # journalctl --unit osbuild-worker
+   # journalctl --unit osbuild-composer
+
+- Verify the status and review error messages for the services and socket:
+
+   # systemctl status osbuild-composer.service
+   # systemctl status osbuild-composer.socket
+   # systemctl status osbuild-worker.service
+
+- Troubleshooting locations:
+..`/etc/osbuild-composer/repositories/` - User-defined system repositories that can be used instead of the default Red Hat Content Distribution Network (CDN).
+.. `/var/lib/osbuild-composer/state.json` - Global state; can remove to investigate file corruption (removes all blueprints, sources, and so on.).
+.. manifests and build artifacts - Can investigate directly with the osbuild command (advanced troubleshooting).
+
+ Note: These are important files to know when learning how osbuild-composer works, but they are not useful for troubleshooting:
+ `/etc/osbuild-composer/osbuild-composer.toml` - For configuring a remote worker and integration with Koji.
+ `/run/osbuild-composer` - A communication socket.
+ `/var/cache/osbuild-composer` - Contains solv files created by DNF.
