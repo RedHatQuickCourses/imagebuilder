@@ -1,6 +1,6 @@
-==  Image builder features and benefits 
+= Image builder features and benefits 
 
-= What is image builder?
+== What is image builder?
 
 Image builder is an image-building tool and live bootable image creator. You can use image builder to create custom deployable images, including selected packages, running a post-install configuration, and more. You can also include third-party packages and updated RHEL Errata content. You can produce images in various formats for deployment to multiple environments.
 
@@ -8,13 +8,13 @@ Comprehensive documentation on image builder is available alongside other produc
 
  Note: Image builder was called composer through the RHEL 8 Beta, and the name changed just before the Genral Availability (GA) release of RHEL 8.0. You still see composer in package names and service names.
  
-= Need for image builder
+== Need for image builder
 
 Before image builder, creating customized RHEL images meant getting media from the Red Hat customer portal and manually applying changes. Red Hat did not support those customized images, only the ISO and virtual machine images provided directly from the customer portal.
 
 The demand for a new approach came from multiple places. Clients and partners often made feature requests to Red Hat seeking a supported ability to customize RHEL images for their specific needs. This feature was essential for Red Hat's strategy to become the leading cloud solution in the market.
 
-= Features and benefits
+== Features and benefits
 
 Image builder provides the following features and benefits:
 

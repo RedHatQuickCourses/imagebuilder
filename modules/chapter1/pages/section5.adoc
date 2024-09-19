@@ -1,6 +1,6 @@
-== Creating blueprints and images
+= Creating blueprints and images
 
-= Create and customize blueprints via the web console
+== Create and customize blueprints via the web console
 
 When an application needs to be added to an infrastructure, you can use image builder to design a single system to deploy that application, and to generate corresponding images.
 
@@ -35,7 +35,7 @@ Image builder allows building any of the supported image types mentioned earlier
 
 image::ch5.5.png[float=center]
 
-= Blueprint customization by using the CLI
+== Blueprint customization by using the CLI
 
 To customize a blueprint from the CLI:
 

@@ -1,8 +1,8 @@
-== Image builder interfaces
+= Image builder interfaces
 
 This section introduces the image builder API and the two interfaces available that use that API.
 
-= Image builder API
+== Image builder API
 
 Image builder is an application programming interface (API) server for building disk images. That means it provides its functionality through API endpoints.
 
@@ -11,14 +11,14 @@ Two front-end tools use this API:
  - Command-line interface (`composer-cli`)
  - Plug-in for the RHEL 9 web console (`cockpit-composer`)
 
-= Image builder CLI
+== Image builder CLI
 
 The image builder CLI provides a command-line interface for using image builder. The root command is composer-cli, and you can use the command shown here to output a help page for that command.
 
  # composer-cli -h
 
 
-= Image builder plug-in for the RHEL 9 web console
+== Image builder plug-in for the RHEL 9 web console
 
 The `cockpit-composer` plug-in provides a GUI for image builder within the RHEL 9 web console. This interface allows using image builder remotely from a web browser interface.
 
