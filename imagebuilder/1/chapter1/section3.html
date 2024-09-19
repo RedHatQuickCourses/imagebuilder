@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
+    <link rel="prev" href="section2.html">
+    <link rel="next" href="../chapter2/index.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/imagebuilder/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="imagebuilder" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">index.adoc</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">section1.adoc</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">section2.adoc</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section3.html">section3.adoc</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter2/index.html">Chapter 2</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter2/section1.html">Section 1</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter3/index.html">Chapter 3</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section1.html">Section 1</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter3/section2.html">Section 2</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Red Hat Enterprise Linux: Create System Images Using Image Builder</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></li>
+    <li><a href="index.html">index.adoc</a></li>
+    <li><a href="section3.html">section3.adoc</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="_image_builder_interfaces"><a class="anchor" href="#_image_builder_interfaces"></a>Image builder interfaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section introduces the image builder API and the two interfaces available that use that API.</p>
+</div>
+</div>
+</div>
+<h1 id="_image_builder_api" class="sect0"><a class="anchor" href="#_image_builder_api"></a>Image builder API</h1>
+<div class="paragraph">
+<p>Image builder is an application programming interface (API) server for building disk images. That means it provides its functionality through API endpoints.</p>
+</div>
+<div class="paragraph">
+<p>Two front-end tools use this API:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Command-line interface (<code>composer-cli</code>)</p>
+</li>
+<li>
+<p>Plug-in for the RHEL 9 web console (<code>cockpit-composer</code>)</p>
+</li>
+</ul>
+</div>
+<h1 id="_image_builder_cli" class="sect0"><a class="anchor" href="#_image_builder_cli"></a>Image builder CLI</h1>
+<div class="paragraph">
+<p>The image builder CLI provides a command-line interface for using image builder. The root command is composer-cli, and you can use the command shown here to output a help page for that command.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># composer-cli -h</pre>
+</div>
+</div>
+<h1 id="_image_builder_plug_in_for_the_rhel_9_web_console" class="sect0"><a class="anchor" href="#_image_builder_plug_in_for_the_rhel_9_web_console"></a>Image builder plug-in for the RHEL 9 web console</h1>
+<div class="paragraph">
+<p>The <code>cockpit-composer</code> plug-in provides a GUI for image builder within the RHEL 9 web console. This interface allows using image builder remotely from a web browser interface.</p>
+</div>
+<div class="paragraph">
+<p>As a web application, the <code>cockpit-composer</code> plug-in does not require you to have GUI packages installed on a RHEL 9 system to access it.</p>
+</div>
+<div class="paragraph">
+<p>The image here shows what the image builder looks like within the web console in RHEL 9.0. This view shows a list of blueprints inside the image builder. Information on blueprints is available later in this course.</p>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch3.1.png" alt="ch3.1">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note: The default port to access the web console is 9090.</pre>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section2.html">section2.adoc</a></span>
+  <span class="next"><a href="../chapter2/index.html">Chapter 2</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
