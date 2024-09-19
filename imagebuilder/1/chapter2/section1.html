@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Section 1 :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
+    <title>Guided Exercise: Create a blueprint and image :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
     <link rel="prev" href="index.html">
     <link rel="next" href="../chapter3/index.html">
     <meta name="generator" content="Antora 3.1.3">
@@ -86,10 +86,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Chapter 2</a>
+    <a class="nav-link" href="index.html">Guided Exercise</a>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="section1.html">Section 1</a>
+    <a class="nav-link" href="section1.html">Guided Exercise: Create a blueprint and image</a>
   </li>
 </ul>
   </li>
@@ -147,8 +147,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></li>
-    <li><a href="index.html">Chapter 2</a></li>
-    <li><a href="section1.html">Section 1</a></li>
+    <li><a href="index.html">Guided Exercise</a></li>
+    <li><a href="section1.html">Guided Exercise: Create a blueprint and image</a></li>
   </ul>
 </nav>
 </div>
@@ -157,25 +157,385 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Section 1</h1>
+<h1 class="page">Guided Exercise: Create a blueprint and image</h1>
+<div class="paragraph">
+<p>Create a blueprint and its corresponding image by using the web console.</p>
+</div>
+<div class="paragraph">
+<p><strong>Outcomes</strong></p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Create multiple copies of this section as needed.</p>
+<p>Create a <code>blueprint</code> and the corresponding image by using the web console.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Install <code>osbuild-composer, composer-cli, cockpit-composer, bash-completion</code> and their dependencies on <code>workstation</code>.</p>
 </li>
 <li>
-<p>Remove any unnecessary sections or chapter pages.</p>
+<p>Create a blueprint called composer-test on the workstation machine.</p>
 </li>
 <li>
-<p>Customize the section as appropriate.</p>
+<p>Add the bison package to the composer-test blueprint.</p>
 </li>
 <li>
-<p>Ensure that each page contains a manageable amount of content.</p>
+<p>Create a tar image using the composer-test blueprint.</p>
+</li>
+</ol>
+</div>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>As the student user on the <code>workstation</code> machine, use the lab command to prepare your environment for this exercise, and to ensure that all required resources are available.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ lab start imagebuilder-create</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note: Image builder usually requires a subscription to work.
+The lab start script configures this lab in a way that you do not need a subscription (uses local dvd repos).
+In your own systems, you need to subscribe them to use image builder.
+For information on this workaround you can refer https://bugzilla.redhat.com/show_bug.cgi?Bugzilla_restrictlogin=on&amp;id=1915351[RFE: be able to use composer without CDN connection]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Instructions</strong></p>
+</div>
+<div class="paragraph">
+<p>The lab start script installed the <code>osbuild-composer, composer-cli, cockpit-composer, bash-completion</code> packages and their dependencies on <code>workstation.lab.example.com</code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Start and enable image builder and cockpit sockets.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo systemctl enable --now osbuild-composer.socket
+Created symlink /etc/systemd/system/sockets.target.wants/osbuild-composer.socket → /usr/lib/systemd/system/osbuild-composer.socket.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo systemctl enable --now cockpit.socket
+Created symlink /etc/systemd/system/sockets.target.wants/cockpit.socket → /usr/lib/systemd/system/cockpit.socket.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Load the shell configuration script so that the autocomplete feature for the composer-cli command starts working immediately without reboot.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ source /etc/bash_completion.d/composer-cli</pre>
+</div>
+</div>
+</li>
+<li>
+<p>To run the <code>composer-cli</code> commands as a non-root user, the user must be in the <code>weld</code> or the root group.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>To add the <code>student</code> user to the <code>weldr</code> or the <code>root</code> group, run the following commands.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Enter the sudo password <code>student</code> when prompted.
+[student@workstation ~]$ sudo usermod -a -G weldr student
+[student@workstation ~]$ newgrp weldr</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Check the sources configured for image builder.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli sources list
+appstream
+baseos
+[student@workstation ~]$ composer-cli sources info baseos
+check_gpg = false
+check_repogpg = false
+check_ssl = true
+gpgkeys = [...output omitted...]
+id = "baseos"
+name = "baseos"
+rhsm = false
+system = true
+type = "yum-baseurl"
+url = "http://content.example.com/rhel9.0/x86_64/dvd/BaseOS"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli sources info appstream
+...output omitted...</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Notice the url field, it points to the dvd repo. In your own (external to this lab) system, after you subscribe the system and configure image builder, you see the url of Red Hat CDN.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Access the image builder dashboard in the RHEL web console.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Visit the GNOME login screen on the <code>workstation</code> system. You can access the console under the <strong>Lab Environment</strong> tab of this ROLE course and then by clicking the <strong>Open Console</strong> button beside the workstation machine.</p>
+</li>
+<li>
+<p>After the GNOME login screen is visible, click the <code>student</code> user account. Enter student when prompted for the password.</p>
+</li>
+<li>
+<p>Navigate to <a href="https://localhost:9090/" class="bare">https://localhost:9090/</a> in the Firefox browser on the <code>workstation</code> system to open the RHEL <code>web console</code>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/4.3.png" alt="4.3">
+</div>
+</div>
+</li>
+<li>
+<p>Proceed with the <code>self-signed</code> certificate by clicking on <strong>Advanced…</strong>​ and <strong>Accept the Risk and Continue</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/4.4.png" alt="4.4">
+</div>
+</div>
+</li>
+<li>
+<p>The login page of the RHEL web console is now visible. Log in by using the username <code>student</code> and by entering the <code>student</code> password.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/4.5.png" alt="4.5">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Turn on administrative access</strong>. Enter the password student when prompted and click <strong>Authenticate</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/4.6.1.png" alt="4.6.1">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/4.6.2.png" alt="4.6.2">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Now you have administrative access on the <code>workstation</code> host.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <code>Image Builder</code> in the left sidebar and then click <strong>Create blueprint</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/5.png" alt="5">
+</div>
+</div>
+</li>
+<li>
+<p>For the new blueprint name, use <code>composer-test</code>. The description is optional, but you can type something in that field, as shown here. After entering details click <strong>Next</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/6.png" alt="6">
+</div>
+</div>
+</li>
+<li>
+<p>Add the <code>bison</code> package to the <code>composer-test</code> blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the new <code>blueprint</code> open, under <code>Available packages</code>, type <code>bison</code> in the filter by name box and press enter. Confirm the results are similar to what is shown here.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>It can take about 2-3 minutes for the search to complete.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.1.png" alt="7.1">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Select the <code>bison</code> package from the search result.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.2.png" alt="7.2">
+</div>
+</div>
+</li>
+<li>
+<p>Click &gt; to add the selected bison package to Chosen packages.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.3.png" alt="7.3">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Next</strong> to proceed.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.4.png" alt="7.4">
+</div>
+</div>
+</li>
+<li>
+<p>Keep clicking <strong>Next</strong> until it reaches the Review section and then click <strong>Save</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.5.1.png" alt="7.5.1">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Alternatively, you can reduce the font size in the browser to see the options sidebar. Click Review to directly jump to the review section.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/7.5.2.png" alt="7.5.2">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a <code>tar</code> image using the <code>composer-test</code> blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>With the <code>composer-test</code> blueprint still open, click <strong>Create image</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.1.png" alt="8.1">
+</div>
+</div>
+</li>
+<li>
+<p>In the <code>Create image</code> dialog, select Disk Archive (<code>`.tar</code>) as the Image output type and click <strong>Next</strong> to proceed.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.2.png" alt="8.2">
+</div>
+</div>
+</li>
+<li>
+<p>In Review section, click <strong>Create</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.3.png" alt="8.3">
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the image creation is added to queue. Click the <code>Images</code> tab to see the status.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.4.png" alt="8.4">
+</div>
+</div>
+</li>
+<li>
+<p>On the Images tab, verify the image output Type and image Status.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.5.png" alt="8.5">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note:
+ Wait for the image to be created before continuing. This might take about 5 minutes to complete. To verify the status from a command line, switch to the terminal to the workstation machine and run composer-cli compose list command repeatedly:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose list
+ID                                     Status    Blueprint       Version   Type
+838abcf7-a455-4388-b51e-0fea3d406786   RUNNING   composer-test   0.0.0     tar</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose list
+ID                                     Status     Blueprint       Version   Type
+838abcf7-a455-4388-b51e-0fea3d406786   FINISHED   composer-test   0.0.0     tar</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Verify that the status column changes from RUNNING to FINISHED.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Switch to the browser and refresh the web page.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Click the <code>Images</code> tab to verify that the image status is <code>Ready</code>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/8.6.png" alt="8.6">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Run the grading script to verify your work,</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ lab grade imagebuilder-create
+ Grading lab.
+ SUCCESS Checking lab systems
+ ...output omitted...
+ Overall lab grade: PASS</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Do not delete the composer-test blueprint because you use it in a later exercise.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 <nav class="pagination">
-  <span class="prev"><a href="index.html">Chapter 2</a></span>
+  <span class="prev"><a href="index.html">Guided Exercise</a></span>
   <span class="next"><a href="../chapter3/index.html">Chapter 3</a></span>
 </nav>
 </article>
