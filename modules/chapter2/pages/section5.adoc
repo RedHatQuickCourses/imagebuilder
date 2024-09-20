@@ -1,0 +1,7 @@
+= Summary
+
+- Image builder helps create bootable images in multiple formats.
+- You can use the RHEL web console or the image builder CLI to create images.
+- You need to create a blueprint before you create images and you can customize the blueprint anytime.
+- You can create RHEL for Edge images using image builder.
+- You can use the CLI commands and check logs at specific locations to troubleshoot image build failures.

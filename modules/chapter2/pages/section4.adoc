@@ -1,0 +1,84 @@
+= Guided Exercise: Create an ISO image using the composer CLI
+
+Create an ISO image with selinux package using the composer CLI.
+
+Outcomes
+
+- Create an ISO image with a selinux package using the image builder CLI.
+.. Create a blueprint called image-installer-test by using composer-cli.
+.. Add the selinux-policy-targeted package.
+.. Create a .iso image from the image-installer-test blueprint.
+
+*Instructions*
+
+. Open a terminal on workstation or connect to it via SSH. Create a image-installer-test.toml file with the following content.
+   name = "image-installer-test"
+   description = "image-installer-test"
+   version = "0.0.1"
+   modules = []
+   groups = []
+
+   [[packages]]
+   name = "selinux-policy-targeted"
+
+. Push the image-installer-test.toml file to create a blueprint.
+
+   [student@workstation ~]$ composer-cli blueprints push image-installer-test.toml
+
+. List the blueprints and ensure that the image-installer-test blueprint is listed.
+
+   [student@workstation ~]$ composer-cli blueprints list
+   composer-test
+   composer-test-new
+   image-installer-test
+
+. Display the packages needed to install the blueprint.
+
+   [student@workstation ~]$ composer-cli blueprints depsolve image-installer-test
+   blueprint: image-installer-test v0.0.1
+       audit-libs-3.0.7-101.el9_0.2.x86_64
+   ...output omitted...
+   selinux-policy-targeted-34.1.29-1.el9_0.2.noarch
+   ...output omitted...
+
+. Start a compose using the image-`installer-test` blueprint and output type as `image-installer`.
+
+.. For .iso image the output type used is `image-installer`. The CLI names are mentioned in the table at https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#composer-output-formats_composer-description[1.2. RHEL image builder output formats]
+
+   [student@workstation ~]$ composer-cli compose start image-installer-test image-installer
+   Compose 9dd254f5-724e-4479-bf94-1c1f9e9bced4 added to the queue
+
+.. The ID in the preceding output is different on your system.
+
+. Wait for the image to be created before continuing. This can take about 10-15 mins. To check the status, run the `composer-cli` compose status command.
+
+  [student@workstation ~]$ composer-cli compose status
+  ID Status Time Blueprint Version Type Size
+  9dd254f5-724e-4479-bf94-1c1f9e9bced4 RUNNING Fri Oct 27 14:17:21 2023 image-installer-test 0.0.1 image-installer
+  838abcf7-a455-4388-b51e-0fea3d406786 FINISHED Fri Oct 27 09:09:19 2023 composer-test 0.0.0 tar 2147483648
+  d7c11834-cc76-474d-9ace-68a071cf89ff FINISHED Fri Oct 27 09:46:17 2023 composer-test 0.0.1 qcow2 2147483648
+  4063f158-e309-44b1-9d4b-77e5b8639abc FINISHED Fri Oct 27 14:05:59 2023 composer-test-new 0.0.1 qcow2 2147483648
+
+  [student@workstation ~]$ composer-cli compose status
+  ID Status Time Blueprint Version Type Size
+  838abcf7-a455-4388-b51e-0fea3d406786 FINISHED Fri Oct 27 09:09:19 2023 composer-test 0.0.0 tar 2147483648
+  d7c11834-cc76-474d-9ace-68a071cf89ff FINISHED Fri Oct 27 09:46:17 2023 composer-test 0.0.1 qcow2 2147483648
+  4063f158-e309-44b1-9d4b-77e5b8639abc FINISHED Fri Oct 27 14:05:59 2023 composer-test-new 0.0.1 qcow2 2147483648
+   9dd254f5-724e-4479-bf94-1c1f9e9bced4 FINISHED Fri Oct 27 14:30:16 2023 image-installer-test 0.0.1 image-installer
+
+. Download the iso image from the CLI.
+
+   [student@workstation ~]$ composer-cli compose image 9dd254f5-724e-4479-bf94-1c1f9e9bced4
+   9dd254f5-724e-4479-bf94-1c1f9e9bced4-installer.iso: 3075.94 MB
+
+.. The image ID is different on your system. Replace it before you run the command.
+
+. List the downloaded iso.
+
+   [student@workstation ~]$  ls -al *.iso
+   -rw-------. 1 student weldr 3225354240 Oct 27 09:53 9dd254f5-724e-4479-bf94-1c1f9e9bced4-installer.iso
+
+. Run the grading script to verify your work.
+  
+   [student@workstation ~]$ lab grade imagebuilder-cli
+

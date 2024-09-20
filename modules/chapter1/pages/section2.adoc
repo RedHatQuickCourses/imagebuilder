@@ -3,6 +3,7 @@
 Image builder allows you to build custom images in various formats.
 
 Each image is:
+
 - Paritioned and pre-installed with the correct packages.
 - Pre-configured with the correct services and custom configuration for the target environment.
 
