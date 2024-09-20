@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guided Exercise: Modify an existing blueprint and create another image :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
+    <link rel="prev" href="section1.html">
+    <link rel="next" href="section3.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/imagebuilder/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="imagebuilder" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter1/index.html">Using and Supporting Image Builder in Red Hat Enterprise Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section1.html">Image builder features and benefits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section2.html">Image builder output image formats</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section3.html">Image builder interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section4.html">Blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section5.html">Creating blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section6.html">Working with RHEL for Edge</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section7.html">Ways to troubleshoot image builder issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Guided Exercise</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Guided Exercise: Create a blueprint and image</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section2.html">Guided Exercise: Modify an existing blueprint and create another image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section4.html">Guided Exercise: Create an ISO image using the composer CLI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Red Hat Enterprise Linux: Create System Images Using Image Builder</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></li>
+    <li><a href="index.html">Guided Exercise</a></li>
+    <li><a href="section2.html">Guided Exercise: Modify an existing blueprint and create another image</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Guided Exercise: Modify an existing blueprint and create another image</h1>
+<div class="paragraph">
+<p>Modify a blueprint by using the web console and create an image from the updated blueprint.</p>
+</div>
+<div class="paragraph">
+<p><strong>Outcomes</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify a blueprint by using the web console and create an image from the updated blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open the <code>composer-test</code> blueprint for editing.</p>
+</li>
+<li>
+<p>Remove the <code>bison</code> package.</p>
+</li>
+<li>
+<p>Add these packages: <code>findutils, diffutils, pciutils</code></p>
+</li>
+<li>
+<p>Create a QEMU qcow2 Image (.qcow2) using the <code>composer-test</code> blueprint.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Instructions</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Edit the <code>composer-test</code> blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Access the image builder dashboard in the RHEL web console. Open <a href="https://localhost:9090/" class="bare">https://localhost:9090/</a> in the Firefox browser on the <code>workstation</code> system.</p>
+</li>
+<li>
+<p>If you are not already logged in, log in by using the username <code>student</code> and by entering the <code>student</code> password.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.2.png" alt="ch2.1.2">
+</div>
+</div>
+</li>
+<li>
+<p>Click <code>Image Builder</code> on the left sidebar and then click the <code>Blueprints</code> tab.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Click the <code>composer-test</code> blueprint.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.3.png" alt="ch2.1.3">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>Edit blueprint</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.4.png" alt="ch2.1.4">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.5.png" alt="ch2.1.5">
+</div>
+</div>
+</li>
+<li>
+<p>Select the <code>bison</code> package and click &lt; to remove it.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.6.png" alt="ch2.1.6">
+</div>
+</div>
+</li>
+<li>
+<p>Verify that no packages are present in the blueprint by matching your screen with the following screenshot.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.1.7.png" alt="ch2.1.7">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add the <code>findutils, diffutils</code> and <code>pciutils</code> packages to blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Search the packages one by one and add them.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.2.1.1.png" alt="ch2.2.1.1">
+</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.2.1.2.png" alt="ch2.2.1.2">
+</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.2.1.3.png" alt="ch2.2.1.3">
+</div>
+</div>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.2.1.4.png" alt="ch2.2.1.4">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>In Review section, click <strong>Save</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.2.png" alt="ch2.2">
+</div>
+</div>
+</li>
+<li>
+<p>In <code>composer-test</code> blueprint, select Packages tab to verify that the packages are added.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.3.png" alt="ch2.3">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a QEMU <code>qcow2</code> Image (<code>.qcow2</code>) using the composer-test blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <strong>Create image</strong>. In the Create image dialog, set the Image output type to QEMU Image (<code>.qcow2</code>) and click <strong>Next</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.3.1.png" alt="ch2.3.1">
+</div>
+</div>
+</li>
+<li>
+<p>In the Review section, click <strong>Create</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.3.2.png" alt="ch2.3.2">
+</div>
+</div>
+</li>
+<li>
+<p>The image is added to the queue, select the <code>Images</code> tab to verify the image output Type and the image Status.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.3.3.png" alt="ch2.3.3">
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note:
+  Wait for the image creation to finish before proceeding, it takes about 5 minutes. To verify the status from a command line, switch to the Terminal and run the composer-cli compose list command repeatedly:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose list
+ID                                     Status     Blueprint       Version   Type
+d7c11834-cc76-474d-9ace-68a071cf89ff   RUNNING    composer-test   0.0.1     qcow2
+838abcf7-a455-4388-b51e-0fea3d406786   FINISHED   composer-test   0.0.0     tar</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose list
+ID                                     Status     Blueprint       Version   Type
+838abcf7-a455-4388-b51e-0fea3d406786   FINISHED   composer-test   0.0.0     tar
+d7c11834-cc76-474d-9ace-68a071cf89ff   FINISHED   composer-test   0.0.1     qcow2</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Notice that the version has updated to 0.0.1 as you modified the existing blueprint.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Switch to the Firefox browser and refresh the web page. Click the Images tab and verify that the image status is Ready.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.3.4.png" alt="ch2.3.4">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Run the grading script to verify your work.
+[student@workstation ~]$ lab grade imagebuilder-modify
+Grading lab.
+SUCCESS Checking lab systems
+&#8230;&#8203;output omitted&#8230;&#8203;
+Overall lab grade: PASS</p>
+</li>
+<li>
+<p>Optionally, download the <code>qcow2</code> image and create a VM.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>When the image build is finished, the Download image button is enabled. Download the image by clicking <strong>Download image</strong> for the <code>qcow2</code> image. Choose Save File and click <strong>OK</strong>.</p>
+</li>
+<li>
+<p>Switch to the terminal and list the downloaded image to confirm the download.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ ls ~/Downloads/
+d7c11834-cc76-474d-9ace-68a071cf89ff-disk.qcow2</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The file name in the preceding output is different on your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Install the necessary packages to enable the workstation machine to host virtual machines. Enter <code>student</code> as the sudo password when prompted.
+[student@workstation ~]$ sudo yum install -y virt-manager libvirt libvirt-client qemu-kvm qemu-img virt-install virt-viewer
+[sudo] password for student:</p>
+</li>
+<li>
+<p>Enable and start the <code>libvirtd</code> service.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo systemctl enable --now libvirtd
+Created symlink /etc/systemd/system/multi-user.target.wants/libvirtd.service → /usr/lib/systemd/system/libvirtd.service.
+Created symlink /etc/systemd/system/sockets.target.wants/libvirtd.socket → /usr/lib/systemd/system/libvirtd.socket.
+Created symlink /etc/systemd/system/sockets.target.wants/libvirtd-ro.socket → /usr/lib/systemd/system/libvirtd-ro.socket.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copy the downloaded image to the default pool.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo cp /home/student/Downloads/d7c11834-cc76-474d-9ace-68a071cf89ff-disk.qcow2 /var/lib/libvirt/images/</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>In the preceding command, make sure to replace the file name as visible in your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test the image using the following command. The commands creates a virtual machine with the name RHEL9Lab2.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo virt-install --name RHEL9Lab2 --memory 2048 --vcpus 2 --os-variant rhel9.0 --import --disk  /var/lib/libvirt/images/d7c11834-cc76-474d-9ace-68a071cf89ff-disk.qcow2
+...output omitted...
+Starting install...
+Creating domain...</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Domain is still running. Installation may be in progress.
+Waiting for the installation to complete.</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>You can use ctrl+c to quit out of the running command.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>On the workstation GUI, search for Virtual Machine Manager.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.5.7.1.png" alt="ch2.5.7.1">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Open the Virtual Machine Manager application. Enter the student password and click <strong>Authenticate</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.5.7.2.png" alt="ch2.5.7.2">
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the RHEL9Lab2 VM is visible.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.5.7.3.png" alt="ch2.5.7.3">
+</div>
+</div>
+</li>
+<li>
+<p>Click the <strong>open</strong> button to view the console.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch2.5.7.4.png" alt="ch2.5.7.4">
+</div>
+</div>
+</li>
+<li>
+<p>This confirms that the image you built works.</p>
+</li>
+<li>
+<p>You cannot log in at this point, the login settings are configured in the next section.</p>
+</li>
+<li>
+<p>Do not delete the <code>composer-test</code> blueprint as later exercises use it.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section1.html">Guided Exercise: Create a blueprint and image</a></span>
+  <span class="next"><a href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guided Exercise: Customize a blueprint for post-installation tasks :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
+    <link rel="prev" href="section2.html">
+    <link rel="next" href="section4.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/imagebuilder/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="imagebuilder" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter1/index.html">Using and Supporting Image Builder in Red Hat Enterprise Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section1.html">Image builder features and benefits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section2.html">Image builder output image formats</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section3.html">Image builder interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section4.html">Blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section5.html">Creating blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section6.html">Working with RHEL for Edge</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section7.html">Ways to troubleshoot image builder issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Guided Exercise</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Guided Exercise: Create a blueprint and image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Guided Exercise: Modify an existing blueprint and create another image</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section4.html">Guided Exercise: Create an ISO image using the composer CLI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Red Hat Enterprise Linux: Create System Images Using Image Builder</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></li>
+    <li><a href="index.html">Guided Exercise</a></li>
+    <li><a href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Guided Exercise: Customize a blueprint for post-installation tasks</h1>
+<div class="paragraph">
+<p>Customize a blueprint by using the web console for post-installation tasks like adding users and SSH keys.</p>
+</div>
+<div class="paragraph">
+<p><strong>Outcomes</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Customize a blueprint by using the web console for post-installation tasks like adding users and SSH keys.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Save the <code>composer-test</code> blueprint using the composer-cli command.</p>
+</li>
+<li>
+<p>Configure a new user <code>user1</code> with password <code>redhat</code>, and belongs to the <code>wheel</code> and <code>users</code> groups.</p>
+</li>
+<li>
+<p>Configure an SSH key for the root user.</p>
+</li>
+<li>
+<p>Push the modified composer-test blueprint, and confirm that your changes are applied.</p>
+</li>
+<li>
+<p>Use the RHEL web console to create a QEMU qcow2 Image (<code>.qcow2</code>) using the customized blueprint.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The resulting image build should have user1 with sudo access (because of the wheel group), and it allows SSH for the root user with the correct key authentication.</p>
+</div>
+<div class="paragraph">
+<p><strong>Instructions</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Save a copy of the <code>composer-test</code> blueprint and copy it to a new file before customizing it.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Open a terminal to the workstation machine.</p>
+</li>
+<li>
+<p>Use this command to save a copy of the blueprint configuration file.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli blueprints save composer-test</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The file itself is in the TOML format (.toml) and can be edited in any text editor.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ ls
+composer-test.toml ...</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note:
+    The name of the TOML file does not matter, it is optional that you rename the file to match the blueprint name.</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Copy the file to the name <code>composer-test-new.toml</code>.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ cp composer-test.toml composer-test-new.toml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Edit the file <code>composer-test-new.toml</code> in a local text editor to customize the blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Change the blueprint name (the name field) to "composer-test-new".</p>
+<div class="literalblock">
+<div class="content">
+<pre>name = "composer-test-new"
+...output omitted...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an SSH key for the root user. Use the key shown in this file excerpt.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[[customizations.sshkey]]
+user = "root"
+key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGtUW3ismHyuCW4CDdTVOOOq6aySdtYenXFWWx7HJa4VTepkG00aaLId9ocra10hc+MB0GTJMCyabDv3i8NKdi6GDH/aOLVsp/Ewy8DEzZMBlJDCt4v2i4/wU4liw6KgEFkZs+5hnqU8d4QzldyGJ5onr+AGvFOKG68CS0BBl40Z1twf1HhCyx8k6nzD2ovlkxWRFZKPAFrtPCBVvQDkOfVFZF+lwzaSztgAjbFZ4A9jqQyUYx4kOJ5DtRef36ucdUdVQale0+8lICl7/gb142SPpYfhxe88/BJScLPRjvVNeu1TxRmoHtVazqnAoRxQYAn2MoI6AG+w6QuZf8f7aL LabGradingKey"</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note:
+ If you try to copy/paste from here and meet an error, copy the SSH key from the contents of the file /home/student/.ssh/lab_rsa.pub on the workstation machine.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Generate an encrypted password string for the password redhat (enter redhat when prompted).</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ python3 -c "import crypt, getpass; print(crypt.crypt(getpass.getpass(), crypt.METHOD_SHA512))"
+Password:
+$6$.......</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The value of the encrypted string in the preceding output is different on your system.</p>
+</li>
+<li>
+<p>Copy the encrypted password string you generated. You use it in the next step for the value of the <code>password =</code> field in the <code>customizations</code>.user section.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add a new user to the blueprint by adding the following section to the file.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>This section adds the user <code>user1</code> with the password <code>redhat</code>.</p>
+</li>
+<li>
+<p>Paste the copied encrypted password string value from the previous step in the password field within double quotes.</p>
+</li>
+<li>
+<p>In the key field, use the SSH key you used for the <code>root</code> user in a previous step.</p>
+</li>
+<li>
+<p>The user uses the public key of the student user and is part of groups <code>users</code> and <code>wheel</code>.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[[customizations.user]]
+name = "user1"
+password = "&lt;encrypted password string copied from previous step&gt;"
+key = "&lt;public SSH key for student user&gt;"
+shell = "/usr/bin/bash"
+groups = ["users", "wheel"]
+uid = 1001</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Save and close the file after you make the changes.</p>
+</li>
+<li>
+<p>Push this new configuration to image builder:</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli blueprints push composer-test-new.toml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Refresh the RHEL web console and return to the <code>Image Builder</code> page. Verify that the new blueprint <code>composite-test-new</code> is visible.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.5.png" alt="ch4.5">
+</div>
+</div>
+</li>
+<li>
+<p>Create a <code>qemu2</code> image for the <code>composer-test-new</code> blueprint.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <code>Create image</code> button for the <code>composer-test-new</code> blueprint.</p>
+</li>
+<li>
+<p>Select the Image output type as QEMU image (<code>.qcow2</code>) and then click <strong>Next</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.6.png" alt="ch4.6">
+</div>
+</div>
+</li>
+<li>
+<p>Click <strong>Create</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Wait for about 5 minutes for the image creation to complete. Check the status from the command line.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation hol001]$ composer-cli compose list
+ID                                     Status     Blueprint           Version   Type
+b50ccabb-3234-4bb8-b970-e5bd20754986   FINISHED    composer-test-new   0.0.1     qcow2
+58ad5f0e-870e-482f-882d-3a727d3185fc   FINISHED   composer-test       0.0.0     tar
+f24ce6c2-beba-41e6-b5e4-783bfdeeec70   FINISHED   composer-test       0.0.1     qcow2</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the <code>libguestfs-tools-c</code> package as the grading script requires it to evalute your work. Enter the sudo password <code>student</code> when prompted.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo dnf install -y libguestfs-tools-c
+[sudo] password for student:</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the grading script to verify your work.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ lab grade imagebuilder-customize
+Grading lab.
+SUCCESS Checking lab systems
+...output omitted...
+Overall lab grade: PASS</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Note:
+  If you run the script too early, the script fails as the image creation is not complete.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Optionally, download and test the image on the <code>workstation</code> machine.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Click <strong>Download image</strong> for the image created from the composer-test-new blueprint to download the image.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.10.1.png" alt="ch4.10.1">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Select Save File and then click OK.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>In a previous exercise you configured the workstation machine to run virtual machines. If you have not configured it, then configure it by following the steps in the previous exercise.</p>
+</li>
+<li>
+<p>Verify that the image is downloaded.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation hol001]$ ls ~/Downloads/
+b50ccabb-3234-4bb8-b970-e5bd20754986-disk.qcow2  d7c11834-cc76-474d-9ace-68a071cf89ff-disk.qcow2</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The file names in the preceding output are different on your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Copy the image to the default storage pool. Make sure to copy the correct file (the latest one).</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo cp /home/student/Downloads/b50ccabb-3234-4bb8-b970-e5bd20754986-disk.qcow2 /var/lib/libvirt/images/
+[sudo] password for student:</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The file name in the preceding output is different on your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test the image using the following command. The commands creates a virtual machine with the name RHEL9Lab2.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo virt-install --name RHEL9Lab3 --memory 2048 --vcpus 2 --os-variant rhel9.0 --import --disk  /var/lib/libvirt/images/b50ccabb-3234-4bb8-b970-e5bd20754986-disk.qcow2
+...output omitted...
+Starting install...
+Creating domain...
+Domain is still running. Installation may be in progress.
+Waiting for the installation to complete.</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>You can use <code>ctrl+c</code> to quit out of the running command.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>On the <code>workstation</code> GUI, search for Virtual Machine Manager.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.10.6.1.png" alt="ch4.10.6.1">
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Open the Virtual Machine Manager application. Enter the student password and click <strong>Authenticate</strong>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.10.6.2.png" alt="ch4.10.6.2">
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the RHEL9Lab3 VM is visible.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.10.6.3.png" alt="ch4.10.6.3">
+</div>
+</div>
+</li>
+<li>
+<p>Click the open button to view the console.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify you can log in with the username <code>user1</code> and password <code>redhat</code>.</p>
+<div class="imageblock center">
+<div class="content">
+<img src="_images/ch4.10.7.png" alt="ch4.10.7">
+</div>
+</div>
+</li>
+<li>
+<p>Switch to the terminal on workstation. List the virtual machines which are running.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo virsh list
+[sudo] password for student:
+Id   Name        State
+---------------------------
+1    RHEL9Lab2   running
+2    RHEL9Lab3   running</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>You can have only one machine running if you have not launched the RHEL9Lab2 in the previous exercise as it was an optional step.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Retrieve the IP of the RHEL9Lab3 VM.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ sudo virsh domifaddr RHEL9Lab3
+Name       MAC address          Protocol     Address
+-------------------------------------------------------------------------------
+vnet1      52:54:00:4d:38:df    ipv4         192.168.122.2/24</pre>
+</div>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>The IP address can be different on your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Verify you can log in to the RHEL9Lab3 VM as the root user by using the SSH key of the <code>student</code> user.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ ssh root@192.168.122.2
+Warning: Permanently added '192.168.122.2' (ED25519) to the list of known hosts.
+...output omitted...
+[root@localhost ~]#</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that <code>user1</code> is part of groups <code>wheel</code> and <code>users</code>.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[root@localhost ~]# su - user1
+Last login: Thu Nov  2 10:20:17 EDT 2023 on tty1
+[user1@localhost ~]$ id
+... groups=1001(user1),10(wheel),100(users) ...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that <code>user1</code> can run privileged commands with sudo. Enter <code>redhat</code> as the <code>sudo</code> password when prompted.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[user1@localhost ~]$ sudo systemctl status chronyd
+...output omitted...
+[sudo] password for user1:
+● chronyd.service - NTP client/server
+Loaded: loaded (/usr/lib/systemd/system/chronyd.service; enabled; vendor preset: enabled)
+Active: active (running) since Thu 2023-11-02 10:19:20 EDT; 15min ago
+...output omitted...</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section2.html">Guided Exercise: Modify an existing blueprint and create another image</a></span>
+  <span class="next"><a href="section4.html">Guided Exercise: Create an ISO image using the composer CLI</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

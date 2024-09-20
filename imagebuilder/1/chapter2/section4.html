@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Guided Exercise: Create an ISO image using the composer CLI :: Red Hat Enterprise Linux: Create System Images Using Image Builder</title>
+    <link rel="prev" href="section3.html">
+    <link rel="next" href="section5.html">
+    <meta name="generator" content="Antora 3.1.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.redhat.com" target="_blank"><img src="../../../_/img/redhat-logo.png" height="40px" alt="Red Hat"></a>
+      <a class="navbar-item" style="font-size: 24px; color: white" href="../../..">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://github.com/RedHatQuickCourses/imagebuilder/issues" target="_blank">Report Issues</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="imagebuilder" data-version="1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../index.html">Home</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../LABENV/index.html">Lab Environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../chapter1/index.html">Using and Supporting Image Builder in Red Hat Enterprise Linux</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section1.html">Image builder features and benefits</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section2.html">Image builder output image formats</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section3.html">Image builder interfaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section4.html">Blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section5.html">Creating blueprints and images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section6.html">Working with RHEL for Edge</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../chapter1/section7.html">Ways to troubleshoot image builder issues</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Guided Exercise</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section1.html">Guided Exercise: Create a blueprint and image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section2.html">Guided Exercise: Modify an existing blueprint and create another image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="section4.html">Guided Exercise: Create an ISO image using the composer CLI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="section5.html">Summary</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../appendix/appendix.html">Appendix</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Red Hat Enterprise Linux: Create System Images Using Image Builder</span>
+    <span class="version">1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Red Hat Enterprise Linux: Create System Images Using Image Builder</a></li>
+    <li><a href="index.html">Guided Exercise</a></li>
+    <li><a href="section4.html">Guided Exercise: Create an ISO image using the composer CLI</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Guided Exercise: Create an ISO image using the composer CLI</h1>
+<div class="paragraph">
+<p>Create an ISO image with selinux package using the composer CLI.</p>
+</div>
+<div class="paragraph">
+<p>Outcomes</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create an ISO image with a selinux package using the image builder CLI.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Create a blueprint called image-installer-test by using composer-cli.</p>
+</li>
+<li>
+<p>Add the selinux-policy-targeted package.</p>
+</li>
+<li>
+<p>Create a .iso image from the image-installer-test blueprint.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Instructions</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open a terminal on workstation or connect to it via SSH. Create a image-installer-test.toml file with the following content.
+name = "image-installer-test"
+description = "image-installer-test"
+version = "0.0.1"
+modules = []
+groups = []</p>
+<div class="literalblock">
+<div class="content">
+<pre>[[packages]]
+name = "selinux-policy-targeted"</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Push the image-installer-test.toml file to create a blueprint.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli blueprints push image-installer-test.toml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>List the blueprints and ensure that the image-installer-test blueprint is listed.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli blueprints list
+composer-test
+composer-test-new
+image-installer-test</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Display the packages needed to install the blueprint.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli blueprints depsolve image-installer-test
+blueprint: image-installer-test v0.0.1
+    audit-libs-3.0.7-101.el9_0.2.x86_64
+...output omitted...
+selinux-policy-targeted-34.1.29-1.el9_0.2.noarch
+...output omitted...</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start a compose using the image-<code>installer-test</code> blueprint and output type as <code>image-installer</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>For .iso image the output type used is <code>image-installer</code>. The CLI names are mentioned in the table at <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/composing_a_customized_rhel_system_image/index#composer-output-formats_composer-description">1.2. RHEL image builder output formats</a></p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose start image-installer-test image-installer
+Compose 9dd254f5-724e-4479-bf94-1c1f9e9bced4 added to the queue</pre>
+</div>
+</div>
+</li>
+<li>
+<p>The ID in the preceding output is different on your system.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Wait for the image to be created before continuing. This can take about 10-15 mins. To check the status, run the <code>composer-cli</code> compose status command.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose status
+ID Status Time Blueprint Version Type Size
+9dd254f5-724e-4479-bf94-1c1f9e9bced4 RUNNING Fri Oct 27 14:17:21 2023 image-installer-test 0.0.1 image-installer
+838abcf7-a455-4388-b51e-0fea3d406786 FINISHED Fri Oct 27 09:09:19 2023 composer-test 0.0.0 tar 2147483648
+d7c11834-cc76-474d-9ace-68a071cf89ff FINISHED Fri Oct 27 09:46:17 2023 composer-test 0.0.1 qcow2 2147483648
+4063f158-e309-44b1-9d4b-77e5b8639abc FINISHED Fri Oct 27 14:05:59 2023 composer-test-new 0.0.1 qcow2 2147483648</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose status
+ID Status Time Blueprint Version Type Size
+838abcf7-a455-4388-b51e-0fea3d406786 FINISHED Fri Oct 27 09:09:19 2023 composer-test 0.0.0 tar 2147483648
+d7c11834-cc76-474d-9ace-68a071cf89ff FINISHED Fri Oct 27 09:46:17 2023 composer-test 0.0.1 qcow2 2147483648
+4063f158-e309-44b1-9d4b-77e5b8639abc FINISHED Fri Oct 27 14:05:59 2023 composer-test-new 0.0.1 qcow2 2147483648
+ 9dd254f5-724e-4479-bf94-1c1f9e9bced4 FINISHED Fri Oct 27 14:30:16 2023 image-installer-test 0.0.1 image-installer</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the iso image from the CLI.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ composer-cli compose image 9dd254f5-724e-4479-bf94-1c1f9e9bced4
+9dd254f5-724e-4479-bf94-1c1f9e9bced4-installer.iso: 3075.94 MB</pre>
+</div>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The image ID is different on your system. Replace it before you run the command.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>List the downloaded iso.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$  ls -al *.iso
+-rw-------. 1 student weldr 3225354240 Oct 27 09:53 9dd254f5-724e-4479-bf94-1c1f9e9bced4-installer.iso</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the grading script to verify your work.</p>
+<div class="literalblock">
+<div class="content">
+<pre>[student@workstation ~]$ lab grade imagebuilder-cli</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="section3.html">Guided Exercise: Customize a blueprint for post-installation tasks</a></span>
+  <span class="next"><a href="section5.html">Summary</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <img src="../../../_/img/rhl-logo-red.png" height="40px" alt="Red Hat"  href="https://redhat.com" >
+</footer><script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
