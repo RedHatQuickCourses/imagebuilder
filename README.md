@@ -6,7 +6,7 @@ Description:
 
 This course introduces image builder, a Red Hat Enterprise Linux feature for creating images. Familarize with how it works, how to use it, and how to troubleshoot issues.
 
-Duration: 30 minutes
+Duration: 60 minutes
 
 # Objectives
 
